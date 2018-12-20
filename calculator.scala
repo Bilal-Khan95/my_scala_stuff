@@ -1,6 +1,3 @@
-import scala.io.StdIn.{readInt, readLine}
-
-
 class calculator{
 	def menu{
 		println("Which calulation? \n 1) Multiply \n 2) Division \n 3) Addition \n 4) Subtraction")
@@ -12,49 +9,49 @@ class calculator{
 			case 2 => division
 			case 3 => addition
 			case 4 => subtraction	
-			case _ => print("INVALID ENTRY")
+			case _ => print("INVALID ENTRY "); main_menu_reload
 		}
 	}
-	def mult(a:Int, b:Int){
-		println("Result = "+ a*b)
-	}
-	def div(a:Int, b:Int){
-		println("Result = "+ a/b)
-	}
-	def add(a:Int, b:Int){
-		println("Result = "+ a+b)
-	}
-	def sub(a:Int, b:Int){
-		println("Result = "+ (a-b))
-	}
-
+	def main_menu_reload = {
+		println("Would you like to do another transaction? yes/no")
+		var menu_yesno = readLine
+		if(menu_yesno == "yes"){
+			this.menu
+		}else{
+			println("END TRANSACTION")
+		}
+	}	
 	def multiplication{
-		print("Enter 2 numbers: \n1st No. ")
+		print("Enter 2 numbers: \n1st No = ")
 		val first_no = readInt
-		print("2nd No. ")
+		print("2nd No = ")
 		val second_no = readInt
-		mult(first_no, second_no)
+		println("Result = " + (first_no * second_no))
+		main_menu_reload
 	}
 	def division{
-		print("Enter 2 numbers: \n1st No. ")
+		print("Enter 2 numbers: \n1st No = ")
 		val first_no = readInt
-		print("2nd No. ")
+		print("2nd No = ")
 		val second_no = readInt
-		div(first_no, second_no)
+		println("Result = "+ (first_no/second_no))
+		main_menu_reload
 	}
 	def addition{
-		print("Enter 2 numbers: \n1st No. ")
-		val first_no = readInt
-		print("2nd No. ")
-		val second_no = readInt
-		add(first_no, second_no)
+		print("Enter 2 numbers: \n1st No = ")
+		var first_no:Int = readInt
+		print("2nd No = ")
+		var second_no:Int = readInt
+		println("Result = "+ (first_no + second_no))
+		main_menu_reload
 	}
 	def subtraction{
-		print("Enter 2 numbers: \n1st No. ")
+		print("Enter 2 numbers: \n1st No = ")
 		val first_no = readInt
-		print("2nd No. ")
+		print("2nd No = ")
 		val second_no = readInt
-		sub(first_no, second_no)
+		println("Result = " + (first_no- second_no))
+		main_menu_reload
 	}
 }
 
@@ -62,4 +59,8 @@ class calculator{
 
 var calc_ref = new calculator()
 
-calc_ref.menu
+try {
+	calc_ref.menu
+} catch {
+	case e:Exception => println("The Exception: "+e)
+}
